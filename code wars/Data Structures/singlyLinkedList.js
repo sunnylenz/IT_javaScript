@@ -130,4 +130,24 @@ class SinglyLinkedList {
         }
         return current;
     }
+
+    set(index, val) {
+        /*
+                SET : set is a function that will accept two things, a position or an index and a value to update the item at that index too
+                    its changing the value of a node based on  its position in the linked list
+
+                    SET PSEUDOCODE
+            1. THIS FUNCTION should accept a value and an index
+            2. Use your get function to find the specific node
+            3. if the node is not found , return false
+            4. if the node is found , set the value of that node to be the value passed to the function and return true
+        */
+
+        let foundNode = this.get(index);
+        if (foundNode) {
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
 }
