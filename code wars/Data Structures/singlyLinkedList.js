@@ -82,6 +82,35 @@ class SinglyLinkedList {
         let currentHead = this.head;
         this.head = currentHead.next;
         this.length--;
-        return currentHead; 
+        if (this.length === 0) {
+            this.tail = null;
+        }
+        return currentHead;
+    }
+
+    unshift(val) {
+        /*
+                    UNSHIFT PSEUDOCODE
+            1. this function should accept a value
+            2. create a new node using the value passed to the function
+            3. if there is no head propety on the list,set the head and tail to be the newly created node
+            4. otherwise set the newly created nodes next property to be the current head property on the list
+            5. set the head property on the list to be that newly created node
+            6. increment the length of the list by 1
+            7. return the linked list
+        */
+
+        let newNode = new Node(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        
+        this.length++;
+        return this;
+
     }
 }
