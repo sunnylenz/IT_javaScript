@@ -108,9 +108,26 @@ class SinglyLinkedList {
             newNode.next = this.head;
             this.head = newNode;
         }
-        
         this.length++;
         return this;
 
+    }
+
+    get(index) {
+        /*
+                    GET : a function for retrieving a node by its position in the linked list
+                    PSEUDOCODE
+            1. this function should accept an index
+            2. if the index is less than zero or greater than equal to the length of the list, return null
+            3. loop through the list until you rech the index and return the node at that specific index
+        */
+        if (index < 0 || index >= this.length) return null;
+        let counter = 0;
+        let current = this.head;
+        while (counter !== index) {
+            current = current.next;
+            counter++;
+        }
+        return current;
     }
 }
