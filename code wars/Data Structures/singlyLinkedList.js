@@ -150,4 +150,35 @@ class SinglyLinkedList {
         }
         return false;
     }
+
+    insert(index, val) {
+        /*
+                    INSERT
+        adding a node to the linked list at a specific position.
+        its a sort of like set , in that it takes two pieces of data, an index and a value.
+        however, instead of updating an existing node,it inserts a new node at whatever position we specify
+                    INSERT PSEUDOCODE
+        1. IF THE index is less than zero or greater than the length, return false
+        2.  if the index is same as the length, push a new node to the end of the list
+        3. if the index is 0, unshift a new node to the start of the list
+        4. otherwise, using get method, aces t e node at the index - 1
+        5. set the next property on that node to be the new node 
+        6. set the next property on the new node to be the previous next
+        7. increment length
+        8. return true
+        */
+        if (index < 0 || index > this.length) return false;
+        if (index === this.length) return !!this.push(val);
+        if (index === 0) return !!this.unshift(val);
+
+        let newNode = new Node(val);
+        let prev = this.get(index - 1);
+        let temp = prev.next;
+        prev.next = newNode;
+        newNode.next = temp;
+        this.length++;
+        return true;
+
+    }
 }
+
