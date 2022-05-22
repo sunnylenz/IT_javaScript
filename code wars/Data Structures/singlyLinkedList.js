@@ -180,5 +180,30 @@ class SinglyLinkedList {
         return true;
 
     }
+    remove(index) {
+        //REMOVE
+        /*
+            Removing a node from the linked list at a specific position
+                //REMOVE PSEUDOCODE
+            1. IF the index is less than 0 or greater than the length, return undefined
+            2. if the index is the same as the length - 1, pop
+            3. if the index is 0, shift
+            4. otherwise, using the get method, acess the node at the index - 1
+            5. set the next property on that node to be the next of the next node
+            6. decrement the length
+            7. return the value of the node removed
+        */
+
+        if (index < 0 || index >= this.length) return undefined;
+        if (index === 0) return this.shift;
+        if (index === this.length - 1) return this.pop();
+
+        let previousNode = this.get(index - 1);
+        let removed = previousNode.next;
+        previousNode.next = removed.next;
+        this.length--;
+
+        return removed;
+    }
 }
 
