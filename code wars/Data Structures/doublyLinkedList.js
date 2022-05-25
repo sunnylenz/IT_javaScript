@@ -84,14 +84,44 @@ class DoublyLinkedList {
         if (this.length === 1) {
             this.head = null;
             this.tail = null;
-        }else{
+        } else {
             this.head = oldHead.next;
             this.head.prev = null;
-            oldHead.next = null;    
+            oldHead.next = null;
         }
-        
+
         this.length--;
         return oldHead;
+    }
+
+    unshift(val) {
+        /*
+                    UNSHIFTING PSEUDOCODE
+            1. create a new node with the value passed to the function
+            2. if the length is 0
+                a. set the head to be the new node
+                b. set tail to be the new node
+            3. otherwise
+                a. set the prev property on the head of the list to be the new node
+                b. set the next property on the new node to be the head property
+                c. update the head to be the new node
+            4. increment the length
+            5. return the list
+        */
+
+        let newNode = new Node(val);
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+
     }
 }
 
@@ -99,10 +129,7 @@ let list = new DoublyLinkedList();
 list.push("Harry");
 list.push("Ron");
 list.push("Hermione");
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
-console.log(list.shift());
+list.unshift("sunny lenz");
 console.log(list);
 
 
