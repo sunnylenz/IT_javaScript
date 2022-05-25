@@ -68,13 +68,41 @@ class DoublyLinkedList {
         this.length--;
         return poppedNode;
     }
+
+    shift() {
+        /*
+                    SHIFTING PSEUDOCODE
+            1. if length is 0, return undefined
+            2. store the current head property in a variable
+            3. if the length is one
+                a. set the head to be null
+                b. set the tail to be null
+            4. set the heads prev property to null.
+        */
+        if (this.length === 0) return undefined;
+        let oldHead = this.head;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        }else{
+            this.head = oldHead.next;
+            this.head.prev = null;
+            oldHead.next = null;    
+        }
+        
+        this.length--;
+        return oldHead;
+    }
 }
 
 let list = new DoublyLinkedList();
-list.push(1);
-list.push(2);
-list.push(3);
-console.log(list.pop());
+list.push("Harry");
+list.push("Ron");
+list.push("Hermione");
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
+console.log(list.shift());
 console.log(list);
 
 
