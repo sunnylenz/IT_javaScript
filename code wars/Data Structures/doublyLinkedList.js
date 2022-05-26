@@ -159,6 +159,21 @@ class DoublyLinkedList {
 
         return current;
     }
+    set(index, val) {
+        /*
+                SET PSEUDOCODE
+            1. create a variable which is the result of the get method at the index passed to the function
+                a. if the get method returns a valid node, set the value of that node to be the value passed to the function
+                b. return true
+            2. otherwise, return false
+        */
+        let foundNode = this.get(index);
+        if (foundNode !== null) {
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
 }
 
 let list = new DoublyLinkedList();
