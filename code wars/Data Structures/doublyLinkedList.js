@@ -123,6 +123,42 @@ class DoublyLinkedList {
         return this;
 
     }
+
+    get(index) {
+        /*
+                    GET PSEUDOCODE
+            1. if the index is less than 0 or greater or equal to length, return null
+            2. if the index is less than or equal to half the length of the list
+                a. loop through the list starting from the head and loop towards the middle
+                b. return the node once its found
+            3. if the index is greater than half the length of the list
+                a. loop through the list starting fro the tail and loop towards the middle
+                b. return the node once its found.
+        */
+
+        if (index < 0 || index >= this.length) return null;
+        let count, current;
+        if (index <= this.length / 2) {
+            console.log("working from staart");
+            count = 0;
+            current = this.head;
+            while (count !== index) {
+                current = current.next;
+                count++;
+            }
+
+        } else {
+            console.log("working from the end");
+            count = this.length - 1;
+            current = this.tail;
+            while (count !== index) {
+                current = current.prev;
+                count--;
+            }
+        }
+
+        return current;
+    }
 }
 
 let list = new DoublyLinkedList();
@@ -130,6 +166,7 @@ list.push("Harry");
 list.push("Ron");
 list.push("Hermione");
 list.unshift("sunny lenz");
+list.get(2);
 console.log(list);
 
 
