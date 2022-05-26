@@ -168,11 +168,36 @@ class DoublyLinkedList {
             2. otherwise, return false
         */
         let foundNode = this.get(index);
-        if (foundNode !== null) {
+        if (foundNode != null) {
             foundNode.val = val;
             return true;
         }
         return false;
+    }
+
+    insert(index, val) {
+        /*
+               INSERT PSEUDOCODE
+           1. if the index is less than zero or greater than or equal to the lengt return false
+           2. if the index is 0, unshift
+           3. if the index is the same as the length, push
+           4. use the get method to acess the index - 1
+           5. set the next and prev properties on the correct nodes to link everything together
+           6. increment the length
+           7. return true
+        */
+        if (index < 0 || index > this.length) return false;
+        if (index === 0) return !!this.unshift(val);
+        if (index === this.length) return !!this.push(val);
+
+        let newNode = new Node(val);
+        let prevNode = this.get(index - 1);
+        let nextNode = prevNode.next;
+
+        prevNode.next = newNode, newNode.prev = prevNode;
+        newNode.next = nextNode, nextNode.prev = newNode;
+        this.length++;
+        return true;
     }
 }
 
@@ -182,6 +207,7 @@ list.push("Ron");
 list.push("Hermione");
 list.unshift("sunny lenz");
 list.get(2);
+console.log(list.set(-10, "Maguire"));
 console.log(list);
 
 
